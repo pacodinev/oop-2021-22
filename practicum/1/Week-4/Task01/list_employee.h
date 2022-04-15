@@ -30,9 +30,20 @@ public:
 
     // assumption: egn is unique
     void remove(unsigned long long egn);
+    void remove(const employee &emp)
+    {
+        remove(emp.get_egn());
+    }
 
     // if egn is not found, return size()
     std::size_t find(unsigned long long egn) const;
+    std::size_t find(const employee &emp) const
+    {
+        return find(emp.get_egn());
+    }
+    
+
+    void swap(list_employee &other);
 
     double get_avarage_salary() const;
 };

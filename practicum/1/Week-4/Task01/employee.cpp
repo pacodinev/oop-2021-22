@@ -1,7 +1,10 @@
 #include "employee.h"
 #include <new>
 #include <cstring>
+#include <ostream>
 #include <utility>
+#include <cassert>
+#include <iostream>
 
 employee::employee(const char name[], unsigned long long egn, const char position[], unsigned salary)
 {
@@ -107,7 +110,7 @@ void employee::set_position(const char new_position[])
         return;
     }
 
-    delete [] m_name;
+    delete [] m_position;
     m_position = alloc_position;
     std::strcpy(m_position, new_position);
 }
@@ -120,4 +123,23 @@ unsigned employee::get_salary() const
 void employee::set_salary(unsigned int new_salary)
 {
     m_salary = new_salary;
+}
+
+bool employee::operator==(const employee &rhs) const
+{
+    // lhs === *this
+    assert((*this).get_egn() != rhs.get_egn() || 
+            ((*this).get_salary() == rhs.get_salary() &&
+             std::strcmp((*this).get_name(), rhs.get_name()) == 0 &&
+             std::strcmp((*this).get_position(), rhs.get_position()) == 0));
+    return (*this).get_egn() == rhs.get_egn();
+}
+
+std::ostream& operator<< (std::ostream &out, const employee &emp)
+{
+    out << "Name: " << emp.get_name() << '\n'
+        << "Position: " << emp.get_position() << '\n'
+        << "EGN: " << emp.get_egn() << '\n'
+        << "Salary: " << emp.get_salary();
+    return out;
 }
