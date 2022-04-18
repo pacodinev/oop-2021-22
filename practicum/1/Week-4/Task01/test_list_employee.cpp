@@ -80,7 +80,7 @@ TEST_CASE("remove of list_employee")
     CHECK(le.find(emp1) == le.size());
 }
 
-TEST_CASE("get_avarage_salary")
+TEST_CASE("get_average_salary")
 {
     employee emp1 = generate_employee1();
     employee emp2 = generate_employee2();
@@ -90,10 +90,11 @@ TEST_CASE("get_avarage_salary")
     le.add(emp1);
     le.add(emp2);
 
-    double avarage_salary = emp1.get_salary() + emp2.get_salary();
-    avarage_salary = avarage_salary/2;
+    double average_salary = emp1.get_salary() + emp2.get_salary();
+    average_salary = average_salary/2;
+    average_salary = average_salary/100;
 
-    CHECK(le.get_avarage_salary() == doctest::Approx(avarage_salary));
+    CHECK(le.get_average_salary() == doctest::Approx(average_salary));
 }
 
 TEST_CASE("copy ctor of list_employee")

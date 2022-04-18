@@ -26,7 +26,7 @@ public:
     employee& get(std::size_t index);
     const employee& get(std::size_t index) const;
 
-    void add(const employee &emp);
+    bool add(const employee &emp);
 
     // assumption: egn is unique
     void remove(unsigned long long egn);
@@ -45,7 +45,7 @@ public:
 
     void swap(list_employee &other);
 
-    double get_avarage_salary() const;
+    double get_average_salary() const;
 };
 
 #endif // !__LIST_EMPLOYEE_H_

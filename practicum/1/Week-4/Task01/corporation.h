@@ -1,3 +1,6 @@
+#ifndef __CORPORATION_H__
+#define __CORPORATION_H__
+
 #include "employee.h"
 #include "list_employee.h"
 
@@ -37,3 +40,5 @@ public:
     }
 
 };
+
+#endif

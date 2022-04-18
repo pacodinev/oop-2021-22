@@ -31,18 +31,21 @@ void list_employee::allocate_mem(std::size_t req_capacity)
     m_capacity = new_capacity;
 }
 
-void list_employee::add(const employee &emp)
+bool list_employee::add(const employee &emp)
 {
+    if(find(emp.get_egn()) != size())
+        return false; // already added to the list
     std::size_t new_size = m_size + 1;
     allocate_mem(new_size);
     if(m_capacity < m_size)
     {
         // memory allocation failed
         // do nothing
-        return; 
+        return false;
     }
     m_size = new_size;
     m_arr[new_size-1] = emp;
+    return true;
 }
 
 std::size_t list_employee::size() const
@@ -115,7 +118,7 @@ list_employee::~list_employee()
     delete [] m_arr;
 }
 
-double list_employee::get_avarage_salary() const
+double list_employee::get_average_salary() const
 {
     double res = 0.0;
     for(std::size_t i=0; i<m_size; i++)
@@ -124,6 +127,7 @@ double list_employee::get_avarage_salary() const
     }
 
     res = res / m_size;
+    res = res / 100;
 
     return res;
 }
